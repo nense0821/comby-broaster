@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Comby Broaster | Menú</title>
+
+    <link rel="stylesheet" href="estilos.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Anton&family=Montserrat:wght@400;500;600;700;800;900&display=swap"
+        rel="stylesheet">
+</head>
+
+<body>
+
+    <!-- ================= HEADER ================= -->
+
+    <header class="header">
+
+        <div class="logo">
+
+            <div class="pollo-logo">
+                🍗
+            </div>
+
+            <div>
+                <h1>COMBY</h1>
+                <h1>BROASTER</h1>
+
+                <span>
+                    EL MEJOR POLLO AL ESTILO AMERICANO
+                </span>
+            </div>
+
+        </div>
+
+
+        <button class="boton-pedido" onclick="abrirCarrito()">
+
+            🛒 Pedido
+
+            <b id="contador">
+                0
+            </b>
+
+        </button>
+
+    </header>
+
+
+    <!-- ================= HERO ================= -->
+
+    <section class="hero">
+
+        <div class="hero-contenido">
+
+            <p class="amarillo">
+                🍗 EL MÁS CROCANTE Y DELICIOSO SABOR
+            </p>
+
+            <h2>
+                POLLO CRUJIENTE.
+                <br>
+
+                <strong>
+                    SABOR DE CASA.
+                </strong>
+            </h2>
+
+            <p>
+                Haz tu pedido directamente desde tu mesa.
+            </p>
+
+            <div class="mesa">
+
+                MESA
+
+                <strong id="numeroMesa">
+                    —
+                </strong>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- ================= BIENVENIDA ================= -->
+
+    <section class="bienvenida">
+
+        <div>
+
+            <span>
+                BIENVENIDO A COMBY
+            </span>
+
+            <h2>
+                Elige, agrega y pide.
+            </h2>
+
+            <p>
+                Selecciona tus productos y envía el pedido directamente por WhatsApp.
+            </p>
+
+        </div>
+
+
+        <div class="selector-mesa">
+
+            <label>
+                Selecciona tu mesa
+            </label>
+
+            <select id="selectorMesa">
+
+                <option value="">
+                    Seleccionar mesa
+                </option>
+
+                <option value="1">
+                    Mesa 1
+                </option>
+
+                <option value="2">
+                    Mesa 2
+                </option>
+
+                <option value="3">
+                    Mesa 3
+                </option>
+
+                <option value="4">
+                    Mesa 4
+                </option>
+
+                <option value="5">
+                    Mesa 5
+                </option>
+
+                <option value="6">
+                    Mesa 6
+                </option>
+
+                <option value="7">
+                    Mesa 7
+                </option>
+
+                <option value="8">
+                    Mesa 8
+                </option>
+
+            </select>
+
+        </div>
+
+    </section>
+
+
+    <!-- ================= MENU ================= -->
+
+    <main>
+
+        <section class="menu">
+
+            <div class="titulo">
+
+                <span>
+                    NUESTRA CARTA
+                </span>
+
+                <h2>
+                    ¿Qué se te antoja?
+                </h2>
+
+            </div>
+
+
+            <!-- CATEGORIAS -->
+
+            <div
+                class="categorias"
+                id="categorias">
+            </div>
+
+
+            <!-- BUSCADOR -->
+
+            <div class="buscador">
+
+                🔎
+
+                <input
+                    type="text"
+                    id="buscador"
+                    placeholder="Buscar pollo, arroz, bebidas..."
+                >
+
+            </div>
+
+
+            <!-- PRODUCTOS -->
+
+            <div
+                class="productos"
+                id="productos">
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <!-- ================= CARRITO ================= -->
+
+    <div
+        class="fondo-carrito"
+        id="fondoCarrito"
+        onclick="cerrarCarrito()">
+    </div>
+
+
+    <aside
+        class="carrito"
+        id="carrito">
+
+        <div class="cabecera-carrito">
+
+            <div>
+
+                <span>
+                    TU PEDIDO
+                </span>
+
+                <h2>
+
+                    Mesa
+
+                    <b id="mesaCarrito">
+                        —
+                    </b>
+
+                </h2>
+
+            </div>
+
+            <button onclick="cerrarCarrito()">
+                ×
+            </button>
+
+        </div>
+
+
+        <div
+            class="productos-carrito"
+            id="productosCarrito">
+        </div>
+
+
+        <div class="final-carrito">
+
+            <div class="total">
+
+                <span>
+                    TOTAL
+                </span>
+
+                <strong id="total">
+                    $0
+                </strong>
+
+            </div>
+
+
+            <textarea
+                id="nota"
+                placeholder="Nota para cocina (opcional)">
+            </textarea>
+
+
+            <button
+                class="whatsapp"
+                onclick="enviarWhatsApp()">
+
+                💬 ENVIAR PEDIDO POR WHATSAPP
+
+            </button>
+
+
+            <small>
+                El pedido se abrirá en WhatsApp listo para enviar.
+            </small>
+
+        </div>
+
+    </aside>
+
+
+    <!-- ================= FOOTER ================= -->
+
+    <footer>
+
+        <div class="pollo-footer">
+            🍗
+        </div>
+
+        <div>
+
+            <h2>
+                COMBY BROASTER
+            </h2>
+
+            <p>
+                El más crocante y delicioso sabor.
+            </p>
+
+        </div>
+
+        <div>
+
+            📲 WhatsApp
+
+            <strong>
+                311 875 0592
+            </strong>
+
+        </div>
+
+    </footer>
+
+
+    <script src="app.js"></script>
+
+</body>
+
+</html>

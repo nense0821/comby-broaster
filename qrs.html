@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+
+<html lang="es">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0">
+
+    <title>
+        QR Mesas | Comby Broaster
+    </title>
+
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+        }
+
+
+        body {
+
+            margin: 0;
+
+            background: #fff1c9;
+
+            font-family: Arial, sans-serif;
+
+            color: #21150d;
+
+        }
+
+
+        header {
+
+            background: #c92819;
+
+            color: white;
+
+            text-align: center;
+
+            padding: 30px;
+
+            border-bottom: 6px solid #ffd000;
+
+        }
+
+
+        header h1 {
+
+            margin: 0;
+
+            font-size: 42px;
+
+        }
+
+
+        main {
+
+            max-width: 1100px;
+
+            margin: 30px auto;
+
+            padding: 20px;
+
+        }
+
+
+        .configuracion {
+
+            background: white;
+
+            padding: 20px;
+
+            border-radius: 15px;
+
+            border: 2px solid #21150d;
+
+            margin-bottom: 30px;
+
+        }
+
+
+        .configuracion input {
+
+            width: 100%;
+
+            padding: 13px;
+
+            margin-top: 10px;
+
+            border: 2px solid #21150d;
+
+            border-radius: 8px;
+
+            font-size: 16px;
+
+        }
+
+
+        .mesas {
+
+            display: grid;
+
+            grid-template-columns:
+                repeat(4, 1fr);
+
+            gap: 20px;
+
+        }
+
+
+        .qr {
+
+            background: white;
+
+            border: 2px solid #21150d;
+
+            border-radius: 15px;
+
+            padding: 20px;
+
+            text-align: center;
+
+            box-shadow: 6px 6px #ffd000;
+
+        }
+
+
+        .qr h2 {
+
+            color: #c92819;
+
+        }
+
+
+        .codigo {
+
+            display: flex;
+
+            justify-content: center;
+
+            margin: 15px;
+
+        }
+
+
+        .qr button {
+
+            background: #21150d;
+
+            color: white;
+
+            border: none;
+
+            padding: 10px 15px;
+
+            border-radius: 7px;
+
+            font-weight: bold;
+
+            cursor: pointer;
+
+        }
+
+
+        @media(max-width:800px) {
+
+            .mesas {
+
+                grid-template-columns:
+                    repeat(2, 1fr);
+
+            }
+
+        }
+
+
+        @media(max-width:500px) {
+
+            .mesas {
+
+                grid-template-columns: 1fr;
+
+            }
+
+        }
+
+
+        @media print {
+
+            .configuracion,
+            .qr button {
+
+                display: none;
+
+            }
+
+
+            .mesas {
+
+                grid-template-columns:
+                    repeat(2, 1fr);
+
+            }
+
+
+            .qr {
+
+                box-shadow: none;
+
+                break-inside: avoid;
+
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+<header>
+
+    <h1>
+        COMBY BROASTER
+    </h1>
+
+    <p>
+        CÓDIGOS QR · 8 MESAS
+    </p>
+
+</header>
+
+
+<main>
+
+
+    <div class="configuracion">
+
+        <strong>
+            Dirección de tu página
+        </strong>
+
+
+        <input
+            id="direccion"
+            type="text"
+            placeholder="https://tupagina.com/index.html">
+
+
+        <p>
+
+            Escribe aquí la dirección donde
+            estará publicada la página.
+
+        </p>
+
+    </div>
+
+
+    <div
+        class="mesas"
+        id="mesas">
+    </div>
+
+
+</main>
+
+
+<script
+    src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js">
+</script>
+
+
+<script>
+
+function generarQR() {
+
+    const contenedor =
+        document.getElementById(
+            "mesas"
+        );
+
+
+    const direccion =
+        document
+            .getElementById(
+                "direccion"
+            )
+            .value
+            .trim();
+
+
+    if (!direccion) {
+
+        alert(
+            "Escribe primero la dirección de tu página."
+        );
+
+        return;
+
+    }
+
+
+    contenedor.innerHTML = "";
+
+
+    for (
+        let mesa = 1;
+        mesa <= 8;
+        mesa++
+    ) {
+
+
+        const tarjeta =
+            document.createElement(
+                "div"
+            );
+
+
+        tarjeta.className =
+            "qr";
+
+
+        tarjeta.innerHTML = `
+
+            <h2>
+                MESA ${mesa}
+            </h2>
+
+            <div
+                class="codigo"
+                id="qr-${mesa}">
+            </div>
+
+            <p>
+                Escanea para ver
+                el menú
+            </p>
+
+            <button
+                onclick="window.print()">
+
+                🖨 IMPRIMIR
+
+            </button>
+
+        `;
+
+
+        contenedor.appendChild(
+            tarjeta
+        );
+
+
+        new QRCode(
+
+            document.getElementById(
+                `qr-${mesa}`
+            ),
+
+            {
+
+                text:
+                    direccion +
+                    "?mesa=" +
+                    mesa,
+
+                width: 200,
+
+                height: 200,
+
+                colorDark:
+                    "#21150d",
+
+                colorLight:
+                    "#ffffff"
+
+            }
+
+        );
+
+    }
+
+}
+
+
+document
+    .getElementById(
+        "direccion"
+    )
+    .addEventListener(
+        "change",
+        generarQR
+    );
+
+</script>
+
+
+</body>
+
+</html>
