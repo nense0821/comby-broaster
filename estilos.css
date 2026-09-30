@@ -27,24 +27,22 @@ body {
 ===================================================== */
 
 .header {
-
     position: sticky;
-
     top: 0;
-
     z-index: 100;
-
     height: 80px;
 
-    background: #c92819;
+    background-color:#A1160D;
+    background-image: url("assets/header-comby.png");
+    background-repeat: no-repeat;
+    background-size: auto 250px;
+    background-position: center 25%;
 
     border-bottom: 5px solid #ffd000;
 
     display: flex;
-
     align-items: center;
-
-    justify-content: space-between;
+    justify-content: flex-end;
 
     padding: 8px 5%;
 
@@ -54,7 +52,7 @@ body {
 
 .logo {
 
-    display: flex;
+    display: none;
 
     align-items: center;
 
